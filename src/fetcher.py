@@ -1,7 +1,7 @@
 import urllib.request
 import xml.etree.ElementTree as ET
 
-def fetch_rss(url):
+def fetch_rss(url, source_name):
     with urllib.request.urlopen(url) as response:
         xml_data = response.read()
     
@@ -14,6 +14,7 @@ def fetch_rss(url):
             'title': item.findtext('title'),
             'summary': item.findtext('description'),
             'link': item.findtext('link'),
+            'source': source_name,
         }
         articles.append(article)
     
